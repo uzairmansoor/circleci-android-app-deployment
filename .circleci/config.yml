@@ -1,4 +1,8 @@
-version: 2
+version: 2.1
+
+orbs:
+  gradle: circleci/gradle@3.0.0
+
 jobs:
   build:
     working_directory: ~/code
@@ -15,7 +19,7 @@ jobs:
           command: chmod +x ./gradlew
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: ./gradlew dependencies #androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
