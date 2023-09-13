@@ -85,4 +85,5 @@ dependencies {
     def room_version = "2.4.2"
     implementation "androidx.room:room-runtime:$room_version"
     kapt("androidx.room:room-compiler:$room_version")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.21" // Match the Kotlin version
 }
