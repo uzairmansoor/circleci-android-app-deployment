@@ -7,15 +7,35 @@ android {
     }
   
 
-  compileSdkVersion 30 // 29
+  compileSdkVersion 32 //30 // 29
   buildToolsVersion '30.0.0'
 // '29.0.2'
 
   defaultConfig {
-    applicationId 'com.sqisland.android.hello'
-    minSdkVersion 1
-    targetSdkVersion 30 // 29
+    applicationId "com.sqisland.android.hello"
+    minSdkVersion 30
+    targetSdkVersion 32
     versionCode 1
-    versionName '1.0.0'
-  }
+    versionName "1.0"
+
+    // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    // vectorDrawables {
+    //     useSupportLibrary true
+    // }
+    }
+
+  // defaultConfig {
+  //   applicationId 'com.sqisland.android.hello'
+  //   minSdkVersion 1
+  //   targetSdkVersion 30 // 29
+  //   versionCode 1
+  //   versionName '1.0.0'
+  // }
+
+  buildscript {
+        dependencies {
+            classpath 'com.android.tools.build:gradle:7.3'
+        }
+    }
+
 }
