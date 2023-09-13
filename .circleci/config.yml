@@ -8,7 +8,7 @@ jobs:
     # executor: android/default
     working_directory: ~/code
     docker:
-      - image: cimg/android:2023.0
+      - image: cimg/android:2023.09
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
