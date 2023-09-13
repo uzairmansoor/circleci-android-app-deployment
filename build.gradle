@@ -13,8 +13,11 @@ buildscript {
   }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility JavaVersion.VERSION_1_8
+targetCompatibility JavaVersion.VERSION_1_8
+
+// sourceCompatibility = 1.8
+// targetCompatibility = 1.8
 
 task wrapper1(type: Wrapper) {
     gradleVersion = '2.8'
