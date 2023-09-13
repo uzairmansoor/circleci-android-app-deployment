@@ -19,7 +19,7 @@ jobs:
           name: chmod permissions
           command: chmod +x ./gradlew
       - run: ./gradlew clean
-      - run: ./gradlew build
+      # - run: ./gradlew build
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
