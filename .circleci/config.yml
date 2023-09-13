@@ -8,8 +8,7 @@ jobs:
     # executor: android/default
     working_directory: ~/code
     docker:
-      - image: cimg/android:2023.09
-      - image: cimg/node:20.6.0
+      - image: cimg/android:2023.0
       # - image: 2023.09.1-browsers
     environment:
       JVM_OPTS: -Xmx3200m
@@ -21,9 +20,7 @@ jobs:
           name: chmod permissions
           command: chmod +x ./gradlew
       - run: gradle --version
-      - run: npm install
-      - run: npm install -g watchman
-      - run: watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache
+      # - run: watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache
       # - run: ./gradlew wrapper --gradle-version=8.3
       # - run: ./gradlew clean assembleDebug 
       # - run: ./gradlew build
