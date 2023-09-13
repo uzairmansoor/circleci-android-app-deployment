@@ -20,7 +20,7 @@ jobs:
           name: chmod permissions
           command: chmod +x ./gradlew
       - run: gradle --version
-      - run: ./gradlew wrapper --gradle-version=8.3
+      # - run: ./gradlew wrapper --gradle-version=8.3
       # - run: ./gradlew clean assembleDebug 
       # - run: ./gradlew build
       - run:
