@@ -20,7 +20,7 @@ jobs:
       - run: ./gradlew clean
       - run:
           name: Download Dependencies
-          command: ./gradlew dependenices #androidDependencies
+          command: ./gradlew androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
