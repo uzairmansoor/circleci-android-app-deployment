@@ -20,6 +20,7 @@ jobs:
           name: chmod permissions
           command: chmod +x ./gradlew
       - run: gradle --version
+      - run: npm install -g watchman
       - run: watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache
       # - run: ./gradlew wrapper --gradle-version=8.3
       # - run: ./gradlew clean assembleDebug 
