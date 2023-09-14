@@ -12,6 +12,14 @@ buildscript {
     }
 }
 
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8 // Set to your desired Java version
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+
 allprojects {
     repositories {
         jcenter()
