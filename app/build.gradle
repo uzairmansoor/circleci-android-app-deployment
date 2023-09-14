@@ -2,8 +2,8 @@
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "30.0.2"
-    // "23.0.2"
+    buildToolsVersion "23.0.2"
+    // "30.0.2"
 
     defaultConfig {
         applicationId "com.filipebarretto.androidhelloworld"
