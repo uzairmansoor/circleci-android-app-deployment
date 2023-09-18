@@ -8,9 +8,9 @@ jobs:
   build:
     # executor: gradle/default
     working_directory: ~/code
-    executor: android/android-machine
-      # name: android/android-machine
-      # tag: 2021.10.1
+    executor:
+      name: android/android-machine
+      tag: 2021.10.1
     # docker:
     #   - image: cimg/android:2023.09
     environment:
