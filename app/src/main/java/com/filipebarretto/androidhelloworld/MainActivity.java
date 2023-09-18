@@ -1,7 +1,8 @@
 package com.filipebarretto.androidhelloworld;
 
 // import android.support.v7.app.AppCompatActivity;
-import androidx.appcompat.app.AppcompatActivity;
+// import androidx.appcompat.app.AppcompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
