@@ -42,6 +42,7 @@ jobs:
           aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
           region: ${AWS_REGION_NAME}
       - run: ls
+      - run: pwd
       - aws-s3/sync:
           from: .
           to: s3://<< parameters.s3BucketName >>/
