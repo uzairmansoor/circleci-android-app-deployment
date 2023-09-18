@@ -20,10 +20,12 @@ jobs:
       - run: java --version
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies --warning-mode all
+          command: ./gradlew androidDependencies
       - run: ./gradlew build
       - store_artifacts:
           path: app/build/reports
           destination: reports
       - store_test_results:
           path: app/build/test-results
+
+# workflows:
