@@ -26,7 +26,7 @@ jobs:
           path: app/build/outputs/apk
           destination: android_outputs
       - store_test_results:
-          path: app/build/
+          path: app/build/test_results
   
   deploy-on-s3:
     parameters:
