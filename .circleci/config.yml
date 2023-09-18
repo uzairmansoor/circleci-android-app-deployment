@@ -42,11 +42,11 @@ jobs:
           region: ${AWS_REGION_NAME}
       - aws-s3/sync:
           from: android_outputs/
-          to: s3://<< parameters.prodBucket >>/
+          to: s3://<< parameters.s3BucketName >>/
 
 workflows:
   version: 2.1
-  build-deploy-and-notify:
+  build-store-and-deploy:
     jobs:
       - build
       - deploy-on-s3:
