@@ -42,7 +42,7 @@ jobs:
           aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
           region: ${AWS_REGION_NAME}
       - aws-s3/sync:
-          from: build/
+          from: android_outputs/
           to: s3://<< parameters.s3BucketName >>/
 
 workflows:
