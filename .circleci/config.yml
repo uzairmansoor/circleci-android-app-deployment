@@ -41,7 +41,7 @@ jobs:
           aws_access_key_id: ${AWS_ACCESS_KEY_ID}
           aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
           region: ${AWS_REGION_NAME}
-      - run: cd ~/code/app/build/outputs/apk/release
+      - run: ls
       - aws-s3/sync:
           from: .
           to: s3://<< parameters.s3BucketName >>/
