@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   android: circleci/android@2.3.0
+  aws-cli: circleci/aws-cli@4.1.0
 
 jobs:
   build:
@@ -9,8 +10,6 @@ jobs:
     executor:
       name: android/android-machine
       tag: 2021.10.1
-    # environment:
-    #   JVM_OPTS: -Xmx4608m #-Xmx3200m
     steps:
       - checkout
       - run:
@@ -24,13 +23,35 @@ jobs:
       - run: ./gradlew build
       - store_artifacts:
           path: app/build/outputs/apk
-          destination: reports
+          destination: android_outputs
       - store_test_results:
           path: app/build/test-results
+  
+  deploy-on-s3:
+    parameters:
+      s3BucketName: 
+        type: string
+        default: "devops-circleci-android-app-prod-us-east-1-007756798683"
+    executor: aws-cli/default
+    steps:
+      - attach_workspace:
+          at: ./
+      - aws-cli/setup:
+          aws_access_key_id: ${AWS_ACCESS_KEY_ID}
+          aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+          region: ${AWS_REGION_NAME}
+      - aws-s3/sync:
+          from: android_outputs/
+          to: s3://<< parameters.prodBucket >>/
 
 workflows:
   version: 2.1
   build-deploy-and-notify:
     jobs:
       - build
+      - deploy-on-s3:
+          s3BucketName: "devops-circleci-android-app-prod-us-east-1-007756798683"
+          context: aws_access_variables
+          requires:
+            - build
 
