@@ -41,8 +41,9 @@ jobs:
           aws_access_key_id: ${AWS_ACCESS_KEY_ID}
           aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
           region: ${AWS_REGION_NAME}
+      - run: cd app/build/outputs/apk/release
       - aws-s3/sync:
-          from: /home/circleci/code/app/build/outputs/apk/release/
+          from: .
           to: s3://<< parameters.s3BucketName >>/
 
 workflows:
