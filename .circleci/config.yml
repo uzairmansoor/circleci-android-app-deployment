@@ -30,7 +30,7 @@ jobs:
       # - run: ./gradlew build
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: ./gradlew androidDependencies --warning-mode all
       - save_cache:
           paths:
             - ~/.gradle
