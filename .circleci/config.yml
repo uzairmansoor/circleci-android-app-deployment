@@ -1,44 +1,27 @@
 version: 2.1
 
 orbs:
-  gradle: circleci/gradle@3.0.0 #circleci/android@2.3.0
   android: circleci/android@2.3.0
 
 jobs:
   build:
-    # executor: gradle/default
     working_directory: ~/code
     executor:
       name: android/android-machine
       tag: 2021.10.1
-    # docker:
-    #   - image: cimg/android:2023.09
-    environment:
-      JVM_OPTS: -Xmx4608m #-Xmx3200m
+    # environment:
+    #   JVM_OPTS: -Xmx4608m #-Xmx3200m
     steps:
       - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
       - run: gradle --version
       - run: java --version
-      # - run: watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache
-      # - run: ./gradlew wrapper --gradle-version=8.3
-      # - run: ./gradlew clean assembleDebug 
-      # - run: ./gradlew build
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies --warning-mode all
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
-      - run: ./gradlew build --stacktrace #./gradlew lint test --warning-mode all #build --stacktrace
-      # - run:
-      #     name: Run Tests
-      #     command: ./gradlew lint test --warning-mode=all
+      - run: ./gradlew build
       - store_artifacts:
           path: app/build/reports
           destination: reports
