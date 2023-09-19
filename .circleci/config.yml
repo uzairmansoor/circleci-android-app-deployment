@@ -28,7 +28,7 @@ jobs:
       - persist_to_workspace:
           root: ~/code
           paths:
-            - app-release-unsigned.apk
+            - app/build/outputs/apk/release/app-release-unsigned.apk
   
   deploy-on-s3:
     parameters:
