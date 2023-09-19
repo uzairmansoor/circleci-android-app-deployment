@@ -3,10 +3,9 @@ version: 2.1
 orbs:
   android: circleci/android@2.3.0
   aws-cli: circleci/aws-cli@4.1.0
-  aws-s3: circleci/aws-s3@4.0.0
 
 jobs:
-  build:
+  build-and-store:
     working_directory: ~/circleci_android_app
     executor:
       name: android/android-machine
@@ -14,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: chmod permissions
+          name: change the permissions of gradlew
           command: chmod +x ./gradlew
       - run: gradle --version
       - run: java --version
@@ -28,7 +27,7 @@ jobs:
       - persist_to_workspace:
           root: ~/circleci_android_app
           paths:
-            - app/build/outputs/apk/release/app-release-unsigned.apk
+            - app/build/outputs/apk/debug/app-debug.apk
   
   deploy-on-s3:
     parameters:
@@ -43,21 +42,16 @@ jobs:
           aws_access_key_id: ${AWS_ACCESS_KEY_ID}
           aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
           region: ${AWS_REGION_NAME}
-      - run: ls
-      - run: pwd
-      - run: aws s3 sync ~/circleci_android_app/app/build/outputs/apk/release/ s3://<< parameters.s3BucketName >>/
-      # - aws-s3/sync:
-      #     from: ~/circleci_android_app/app/build/outputs/apk/release/
-      #     to: s3://<< parameters.s3BucketName >>/
+      - run: aws s3 sync ~/circleci_android_app/app/build/outputs/apk/debug/ s3://<< parameters.s3BucketName >>/
 
 workflows:
   version: 2.1
   build-store-and-deploy:
     jobs:
-      - build
+      - build-and-store
       - deploy-on-s3:
           s3BucketName: "devops-circleci-android-app-prod-us-east-1-007756798683"
           context: aws_access_variables
           requires:
-            - build
+            - build-and-store
 
