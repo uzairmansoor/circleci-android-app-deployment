@@ -45,10 +45,10 @@ jobs:
           region: ${AWS_REGION_NAME}
       - run: ls
       - run: pwd
-      # - run: aws s3 sync ~/code/app/build/outputs/apk/release/ s3://<< parameters.s3BucketName >>/
-      - aws-s3/sync:
-          from: ~/code/app/build/outputs/apk/release/
-          to: s3://<< parameters.s3BucketName >>/
+      - run: aws s3 sync ~/code/app/build/outputs/apk/release/ s3://<< parameters.s3BucketName >>/
+      # - aws-s3/sync:
+      #     from: ~/code/app/build/outputs/apk/release/
+      #     to: s3://<< parameters.s3BucketName >>/
 
 workflows:
   version: 2.1
